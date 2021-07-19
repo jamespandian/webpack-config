@@ -8,7 +8,10 @@ module.exports ={
     mode : mode,
     devtool:"source-map",
     plugins: [new MiniCssExtractPlugin()],
-
+    resolve: {
+      
+      extensions: ['.js', '.jsx'],
+    },
     module: {
         rules: [
             {
@@ -16,14 +19,27 @@ module.exports ={
                 use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader"],
               },
              {
-            test: /\.m?js$/,
+            test: /\.m?jsx?$/,
             exclude: /node_modules/,
             use: {
               loader: 'babel-loader',
               options: {
-                presets: [
-                  ['@babel/preset-env', { targets: "defaults" }]
-                ]
+               
+                
+                  "presets": [
+                    [
+                      "@babel/preset-env",
+                      {
+                        "targets": {
+                          "node": "10"
+                        }
+                      }
+                    ],
+                    ["@babel/preset-react",{runtime:"automatic"}]
+                  ]
+                
+
+
               }
             }
           }
