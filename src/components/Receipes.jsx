@@ -1,4 +1,4 @@
-
+import {useState} from "react";
 const elvenShieldRecipe = {
     leatherStrips: 2,
     ironIngot: 1,
@@ -11,6 +11,32 @@ const elvenShieldRecipe = {
     refinedMoonstone: 1,
   };
 
-  console.log(elvenShieldRecipe)
 
-  console.log(elvenGauntletsRecipe)
+  const Receipes = () =>{
+
+    const [receipt , setReceipe ] = useState(elvenShieldRecipe);
+
+ 
+    return (
+        <div>
+            <button onClick={()=> setReceipe(elvenShieldRecipe)}>elvenShieldRecipe</button>
+            <button onClick={()=> setReceipe(elvenGauntletsRecipe)}>elvenGauntletsRecipe</button>
+            <ul>
+           
+            {Object.keys(receipt).map((item,i) => (
+        <li key={i}>
+            {item}:{receipt[item]}
+        </li>
+    ))}
+
+    
+ 
+
+            </ul>
+        </div>
+
+    )
+
+  }
+
+  export default Receipes;
